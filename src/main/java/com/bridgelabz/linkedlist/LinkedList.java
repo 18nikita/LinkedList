@@ -1,5 +1,7 @@
 package com.bridgelabz.linkedlist;
 
+import java.util.Scanner;
+
 class Node {
 	int data;
 	Node next;
@@ -11,22 +13,14 @@ class Node {
 }
 
 class operations {
-
-	/*
-	 * Taking variables to store the head
-	 */
 	Node head;
+	Node tail;
 
-	public void pushData(int data) {
-
-		// created the object of the Node class to get the address of the Node and
-		// passing the "data" it will store in constructor
+	public void pushData(int data) {		
 		Node newnode = new Node(data);
 
 		if (head == null) {
-
 			head = newnode;
-
 		} else {
 			Node temp = head;
 			this.head = newnode;
@@ -36,10 +30,8 @@ class operations {
 
 	public void print() {
 		if (head == null)
-			System.out.println("Empty LinkedList");
-
+			System.out.println("Empty LinkList");
 		else {
-
 			Node temp = head;
 			while (temp != null) {
 				System.out.print(temp.data + " -> ");
@@ -47,14 +39,22 @@ class operations {
 			}
 		}
 	}
+
+	public void append(int data) {
+		Node newnode = new Node(data);
+		if (head == null) {
+			head = newnode;
+			tail = newnode;
+		} else {
+			tail.next = newnode;
+			tail = newnode;
+		}
+	}
 }
 
 public class LinkedList {
 
-	public static void main(String[] args) {
-
-		System.out.println("*** Welcome To LinkList Program ***");
-
+	public static void addDataStart() {
 		operations link = new operations();
 		link.pushData(70);
 		link.pushData(30);
@@ -62,4 +62,32 @@ public class LinkedList {
 		link.print();
 	}
 
+	public static void addDataEnd() {
+		operations link = new operations();
+		link.append(56);
+		link.append(30);
+		link.append(70);
+		link.print();
+	}
+
+	public static void main(String[] args) {
+
+		System.out.println("*** Welcome To LinkList Program ***");
+		Scanner sc = new Scanner(System.in);
+		System.out.println();
+		System.out.println("Press 1 to add data at start");
+		System.out.println("Press 2 to add data at end");
+		int input = sc.nextInt();
+
+		switch (input) {
+		case 1:
+			addDataStart();
+			break;
+		case 2:
+			addDataEnd();
+			break;
+		default:
+			System.out.println("Invalid Choice");
+		}
+	}
 }
